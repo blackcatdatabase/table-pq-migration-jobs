@@ -110,7 +110,7 @@ SQL;
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
         // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
-        $expectedIdx = [ 'idx_pq_mig_status_sched' ];
+        $expectedIdx = [];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)
             $expectedIdx = array_values(array_filter(
@@ -143,7 +143,7 @@ SQL;
             'columns'     => Definitions::columns(),
             'version'     => $this->version(),
             'dialects'    => [ 'mysql', 'postgres' ],
-            'indexes'     => [ 'idx_pq_mig_status_sched' ],
+            'indexes'     => [],
             'foreignKeys' => [ 'fk_pq_mig_algo', 'fk_pq_mig_policy', 'fk_pq_mig_user' ],
         ];
     }
