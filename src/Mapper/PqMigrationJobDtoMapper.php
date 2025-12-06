@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class PqMigrationJobDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'target_policy_id' => 'targetPolicyId', 'target_algo_id' => 'targetAlgoId', 'scheduled_at' => 'scheduledAt', 'started_at' => 'startedAt', 'finished_at' => 'finishedAt', 'processed_count' => 'processedCount', 'created_by' => 'createdBy', 'created_at' => 'createdAt' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'scope' => 'scope', 'target_policy_id' => 'targetPolicyId', 'target_algo_id' => 'targetAlgoId', 'selection' => 'selection', 'scheduled_at' => 'scheduledAt', 'started_at' => 'startedAt', 'finished_at' => 'finishedAt', 'status' => 'status', 'processed_count' => 'processedCount', 'error' => 'error', 'created_by' => 'createdBy', 'created_at' => 'createdAt' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [];
@@ -39,13 +39,8 @@ final class PqMigrationJobDtoMapper
 
     private static function tz(): DateTimeZone
     {
-        if (self::$tzObj instanceof DateTimeZone) {
-            return self::$tzObj;
-        }
-        try {
+        if (!(self::$tzObj instanceof DateTimeZone)) {
             self::$tzObj = new DateTimeZone(self::TZ);
-        } catch (\Throwable) {
-            self::$tzObj = new DateTimeZone('UTC');
         }
         return self::$tzObj;
     }

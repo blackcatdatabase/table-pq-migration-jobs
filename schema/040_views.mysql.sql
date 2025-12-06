@@ -1,6 +1,7 @@
--- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
+-- Auto-generated from schema-views-mysql.yaml (map@sha1:A4E10261DACB7519F6FEA44ED77A92163429CA5E)
 -- engine: mysql
 -- table:  pq_migration_jobs
+
 -- Contract view for [pq_migration_jobs]
 -- Adds helpers: is_done, is_running.
 CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_pq_migration_jobs AS
@@ -21,17 +22,3 @@ SELECT
   (status = 'done')    AS is_done,
   (status = 'running') AS is_running
 FROM pq_migration_jobs;
-
--- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
--- engine: mysql
--- table:  pq_migration_jobs_metrics
--- PQ migration progress by status
-CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_pq_migration_jobs_metrics AS
-SELECT
-  status,
-  COUNT(*) AS jobs,
-  SUM(processed_count) AS processed_total
-FROM pq_migration_jobs
-GROUP BY status
-ORDER BY status;
-
