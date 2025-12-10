@@ -11,9 +11,9 @@ Jobs that migrate stored data to PQ-safe hashing/encryption policies.
 | finished_at | DATETIME(6) | YES |  | Completion timestamp. |
 | id | BIGINT | NO |  | Surrogate primary key. |
 | processed_count | BIGINT | NO | 0 | How many records were processed. |
+| scheduled_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Scheduled start time. |
 | scope | mysql: ENUM('hashes','wrappers','signatures') / postgres: TEXT | NO |  | What is being migrated (hashes, wrappers, signatures). |
 | selection | mysql: JSON / postgres: JSONB | YES |  | JSON selector describing the affected dataset. |
-| scheduled_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Scheduled start time. |
 | started_at | DATETIME(6) | YES |  | When the job started. |
 | status | mysql: ENUM('pending','running','done','failed','cancelled') / postgres: TEXT | NO | pending | Execution status. (enum: pending, running, done, failed, cancelled) |
 | target_algo_id | BIGINT | YES |  | Target crypto algorithm id, optional. |
