@@ -20,13 +20,13 @@
         "processed_count": {
           "strategy": "passthrough"
         },
+        "scheduled_at": {
+          "strategy": "passthrough"
+        },
         "scope": {
           "strategy": "passthrough"
         },
         "selection": {
-          "strategy": "passthrough"
-        },
-        "scheduled_at": {
           "strategy": "passthrough"
         },
         "started_at": {
